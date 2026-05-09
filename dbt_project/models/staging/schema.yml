@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Staging model for raw customers"
+    columns:
+      - name: customer_id
+        description: "Primary key for customer"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_products
+    description: "Staging model for raw products"
+    columns:
+      - name: product_id
+        description: "Primary key for product"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: "Staging model for raw orders"
+    columns:
+      - name: order_id
+        description: "Primary key for order"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to customer"
+        tests:
+          - not_null
+
+  - name: stg_order_items
+    description: "Staging model for raw order items"
+    columns:
+      - name: order_item_id
+        description: "Primary key for order item"
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Foreign key to order"
+        tests:
+          - not_null
+      - name: product_id
+        description: "Foreign key to product"
+        tests:
+          - not_null
